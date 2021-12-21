@@ -1,0 +1,26 @@
+[2021-12-19 19:58:03] [ DEBUG] [ResolverUtil$Test:43] Coma mierda marica
+[2021-12-19 20:01:38] [ DEBUG] [ResolverUtil$Test:43] Log desde debug
+[2021-12-19 20:01:38] [ INFO ] [ResolverUtil$Test:44] log desde info
+[2021-12-19 20:01:38] [ WARN ] [ResolverUtil$Test:45] log desde warn
+[2021-12-19 20:01:38] [ ERROR] [ResolverUtil$Test:46] log desde error  
+[2021-12-19 20:01:38] [ FATAL] [ResolverUtil$Test:47] log desde fatal
+[2021-12-19 21:09:14] [ DEBUG] [ResolverUtil$Test:45] Log desde debug
+[2021-12-19 21:09:14] [ INFO ] [ResolverUtil$Test:46] log desde info
+[2021-12-19 21:09:14] [ WARN ] [ResolverUtil$Test:47] log desde warn
+[2021-12-19 21:09:14] [ ERROR] [ResolverUtil$Test:48] log desde error  
+[2021-12-19 21:09:14] [ FATAL] [ResolverUtil$Test:49] log desde fatal
+[2021-12-19 21:09:58] [ DEBUG] [ResolverUtil$Test:45] Log desde debug
+[2021-12-19 21:09:58] [ INFO ] [ResolverUtil$Test:46] log desde info
+[2021-12-19 21:09:58] [ WARN ] [ResolverUtil$Test:47] log desde warn
+[2021-12-19 21:09:58] [ ERROR] [ResolverUtil$Test:48] log desde error  
+[2021-12-19 21:09:58] [ FATAL] [ResolverUtil$Test:49] log desde fatal
+[2021-12-19 21:11:50] [ DEBUG] [ResolverUtil$Test:45] Log desde debug
+[2021-12-19 21:11:50] [ INFO ] [ResolverUtil$Test:46] log desde info
+[2021-12-19 21:11:50] [ WARN ] [ResolverUtil$Test:47] log desde warn
+[2021-12-19 21:11:50] [ ERROR] [ResolverUtil$Test:48] log desde error  
+[2021-12-19 21:11:50] [ FATAL] [ResolverUtil$Test:49] log desde fatal
+[2021-12-19 21:13:23] [ DEBUG] [ResolverUtil$Test:45] Log desde debug
+[2021-12-19 21:13:23] [ INFO ] [ResolverUtil$Test:46] log desde info
+[2021-12-19 21:13:23] [ WARN ] [ResolverUtil$Test:47] log desde warn
+[2021-12-19 21:13:23] [ ERROR] [ResolverUtil$Test:48] log desde error  
+[2021-12-19 21:13:23] [ FATAL] [ResolverUtil$Test:49] log desde fatal
