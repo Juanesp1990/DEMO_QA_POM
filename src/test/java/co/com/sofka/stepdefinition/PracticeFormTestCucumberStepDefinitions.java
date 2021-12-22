@@ -1,31 +1,29 @@
-package co.com.sofka.runner;
+package co.com.sofka.stepdefinition;
 
 import co.com.sofka.model.PracticeFormModel;
 import co.com.sofka.page.PracticeFormPage;
 import co.com.sofka.setup.WebUi;
 import co.com.sofka.util.Gender;
 import co.com.sofka.util.Hobbies;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
-
-public class PracticeFormTest extends WebUi {
+public class PracticeFormTestCucumberStepDefinitions  extends WebUi {
 
     private PracticeFormModel maria;
     private static final String ASSERTION_EXCEPTION_MESSAGE = "Los valores suministrados no son los esperados %s";
     private PracticeFormPage practiceFormPage;
+    private List<String> comparator;
 
-    @BeforeEach
-    public void setUp () {
+    @Given("que el empleado administrativo se encuentra en la página web de los ingresos de estudiantes")
+    public void queElEmpleadoAdministrativoSeEncuentraEnLaPáginaWebDeLosIngresosDeEstudiantes() {
         try {
-            generateUserStudent();
             generalSetUp();
             maximize();
         } catch (Exception e) {
@@ -33,15 +31,25 @@ public class PracticeFormTest extends WebUi {
         }
 
     }
-
-    @Test
-    public void practiceFormTestMamdatoryFields () {
+    @When("el empleado administrativo ingresa los campos obligatios y confirma la acción")
+    public void elEmpleadoAdministrativoIngresaLosCamposObligatiosYConfirmaLaAcción() {
+        try {
+            generateUserStudent();
+        } catch (Exception exception) {
+            quiteDriver();
+            Assertions.fail(exception.getMessage(),exception);
+        }
+    }
+    @Then("el sistema deberá mostrar por la pantalla de registro del estudiante ingresado")
+    public void elSistemaDeberáMostrarPorLaPantallaDeRegistroDelEstudianteIngresado() {
         try {
             practiceFormPage = new PracticeFormPage(maria, super.driver);
             practiceFormPage.fillMandatoryFields();
-
+            comparator= new ArrayList<String>();
+            comparator= practiceFormPage.isRegistrationDone();
+            quiteDriver();
             Assertions.assertEquals(
-                    practiceFormPage.isRegistrationDone(),
+                    comparator,
                     elementsForRegister(),
                     String.format(ASSERTION_EXCEPTION_MESSAGE, outcome())
             );
@@ -49,15 +57,6 @@ public class PracticeFormTest extends WebUi {
             quiteDriver();
             Assertions.fail(exception.getMessage(),exception);
         }
-
-    }
-
-    @AfterEach
-    public void tearDowm () throws InterruptedException {
-        //driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-        //Thread.sleep(15000);
-        quiteDriver();
-
     }
 
     private void generateUserStudent () {
@@ -89,7 +88,6 @@ public class PracticeFormTest extends WebUi {
     }
 
     private String outcome () {
-
-        return "\n " + practiceFormPage.isRegistrationDone().toString() + "\n\r" + elementsForRegister().toString();
+        return "\n " + comparator.toString() + "\n\r" + elementsForRegister().toString();
     }
 }
