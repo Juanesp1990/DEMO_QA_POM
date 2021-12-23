@@ -5,6 +5,7 @@ import co.com.sofka.page.PracticeFormPage;
 import co.com.sofka.setup.WebUi;
 import co.com.sofka.util.Gender;
 import co.com.sofka.util.Hobbies;
+import co.com.sofka.util.Student;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 
+import static co.com.sofka.util.Utilities.userDir;
 
-public class PracticeFormTest extends WebUi {
+
+class PracticeFormTest extends WebUi {
 
     private PracticeFormModel maria;
     private static final String ASSERTION_EXCEPTION_MESSAGE = "Los valores suministrados no son los esperados %s";
@@ -27,7 +30,6 @@ public class PracticeFormTest extends WebUi {
         try {
             generateUserStudent();
             generalSetUp();
-            maximize();
         } catch (Exception e) {
             quiteDriver();
         }
@@ -35,27 +37,25 @@ public class PracticeFormTest extends WebUi {
     }
 
     @Test
-    public void practiceFormTestMamdatoryFields () {
+    void practiceFormTestMamdatoryFields () {
         try {
             practiceFormPage = new PracticeFormPage(maria, super.driver);
             practiceFormPage.fillMandatoryFields();
-
             Assertions.assertEquals(
                     practiceFormPage.isRegistrationDone(),
                     elementsForRegister(),
                     String.format(ASSERTION_EXCEPTION_MESSAGE, outcome())
             );
         } catch (Exception exception) {
+            Assertions.fail(exception.getMessage(), exception);
+        } finally {
             quiteDriver();
-            Assertions.fail(exception.getMessage(),exception);
         }
 
     }
 
     @AfterEach
-    public void tearDowm () throws InterruptedException {
-        //driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-        //Thread.sleep(15000);
+    public void tearDowm () {
         quiteDriver();
 
     }
@@ -70,10 +70,10 @@ public class PracticeFormTest extends WebUi {
         maria.setYear("1990");
         maria.setMonth("November");
         maria.setDay("11");
-        maria.setHobbies(Arrays.asList(Hobbies.READING,Hobbies.MUSIC, Hobbies.SPORTS));
+        maria.setHobbies(Arrays.asList(Hobbies.READING, Hobbies.MUSIC, Hobbies.SPORTS));
         maria.setCurrentAddres("Dg 75 dd 4-51 BL55 APTO 102");
         maria.setSubject(Arrays.asList("Maths", "History", "Biology"));
-        maria.setPicture("C:\\Users\\JUANES\\Desktop\\DEmo\\src\\test\\resources\\images\\fondo.jpg");
+        maria.setPicture(userDir() + Student.PHOTO.getValue());
         maria.setState("Rajasthan");
         maria.setCity("Jaipur");
 

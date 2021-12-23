@@ -5,7 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-public class CommonActionOnpages {
+import org.openqa.selenium.*;
+
+public class CommonActionOnpages extends BaseSikulix{
     private WebDriver driver;
 
     public CommonActionOnpages (WebDriver driver) {
@@ -34,14 +36,48 @@ public class CommonActionOnpages {
         driver.findElement(locator).sendKeys(Keys.ENTER);
     }
 
-    protected void scrollDown(){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,1000)");
+    public void scrollTo(By locator){
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
     }
 
     protected  String getText (By locator){
         return driver.findElement(locator).getText();
     }
 
+    protected void scrollDown(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+    }
+
+    protected void typeInto(WebElement webElement, String value){
+        webElement.sendKeys(value);
+    }
+
+    protected void clearText(WebElement webElement){
+        webElement.clear();
+    }
+
+    protected void click(WebElement webElement){
+        webElement.click();
+    }
+
+    protected void pathFile(WebElement webElement, String path){
+        webElement.sendKeys(path);
+    }
+
+    protected void pressEnter(WebElement webElement) {
+        webElement.sendKeys(Keys.ENTER);
+    }
+
+    public void scrollTo(WebElement webElement){
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].scrollIntoView();", webElement);
+    }
+
+    protected  String getText (WebElement webElement){
+        return webElement.getText();
+    }
 
 }
+
